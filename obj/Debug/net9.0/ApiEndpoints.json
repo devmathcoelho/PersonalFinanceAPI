@@ -1,0 +1,60 @@
+[
+  {
+    "ContainingType": "PersonalFinanceAPI.Endpoints.UserEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapUserEndpoints\u003Eb__0_0",
+    "RelativePath": "users/",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[PersonalFinanceAPI.Models.User, PersonalFinanceAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PersonalFinanceAPI.Endpoints.UserEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapUserEndpoints\u003Eb__0_2",
+    "RelativePath": "users/",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "PersonalFinanceAPI.Models.User",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PersonalFinanceAPI.Endpoints.UserEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapUserEndpoints\u003Eb__0_1",
+    "RelativePath": "users/random",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[PersonalFinanceAPI.Models.User, PersonalFinanceAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]
