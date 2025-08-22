@@ -6,7 +6,10 @@ namespace PersonalFinanceAPI.Data
     public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
-        public DbSet<User> Users => Set<User>();
 
+        public DbSet<User> Users => Set<User>();
+        public DbSet<Expense> Expense => Set<Expense>();
+        public DbSet<Revenue> Revenue => Set<Revenue>();
+        public DbSet<Category> Categories => Set<Category>();
     }
 }

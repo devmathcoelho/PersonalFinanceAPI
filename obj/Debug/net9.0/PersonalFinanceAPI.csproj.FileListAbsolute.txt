@@ -163,4 +163,5 @@ D:\Programacao\Math\Projects\PersonalFinances\Server_Side\PersonalFinanceAPI\bin
 D:\Programacao\Math\Projects\PersonalFinances\Server_Side\PersonalFinanceAPI\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 D:\Programacao\Math\Projects\PersonalFinances\Server_Side\PersonalFinanceAPI\bin\Debug\net9.0\Npgsql.dll
 D:\Programacao\Math\Projects\PersonalFinances\Server_Side\PersonalFinanceAPI\bin\Debug\net9.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\Programacao\Math\Projects\PersonalFinances\Server_Side\PersonalFinanceAPI\obj\Debug\net9.0\PersonalFinanceAPI.sourcelink.json
 D:\Programacao\Math\Projects\PersonalFinances\Server_Side\PersonalFinanceAPI\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

@@ -1,18 +1,38 @@
 [
   {
+    "ContainingType": "PersonalFinanceAPI.Endpoints.ExpenseEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapExpenseEndpoints\u003Eb__0_0",
+    "RelativePath": "expense/",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "expense",
+        "Type": "PersonalFinanceAPI.Models.Expense",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "PersonalFinanceAPI.Endpoints.UserEndpoints\u002B\u003C\u003Ec",
     "Method": "\u003CMapUserEndpoints\u003Eb__0_0",
-    "RelativePath": "users/",
+    "RelativePath": "user/",
     "HttpMethod": "GET",
     "IsController": false,
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[PersonalFinanceAPI.Models.User, PersonalFinanceAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "application/json"
-        ],
+        "Type": "System.Void",
+        "MediaTypes": [],
         "StatusCode": 200
       }
     ]
@@ -20,7 +40,7 @@
   {
     "ContainingType": "PersonalFinanceAPI.Endpoints.UserEndpoints\u002B\u003C\u003Ec",
     "Method": "\u003CMapUserEndpoints\u003Eb__0_2",
-    "RelativePath": "users/",
+    "RelativePath": "user/",
     "HttpMethod": "POST",
     "IsController": false,
     "Order": 0,
@@ -42,17 +62,21 @@
   {
     "ContainingType": "PersonalFinanceAPI.Endpoints.UserEndpoints\u002B\u003C\u003Ec",
     "Method": "\u003CMapUserEndpoints\u003Eb__0_1",
-    "RelativePath": "users/random",
+    "RelativePath": "user/{name}",
     "HttpMethod": "GET",
     "IsController": false,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "name",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[PersonalFinanceAPI.Models.User, PersonalFinanceAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "application/json"
-        ],
+        "Type": "System.Void",
+        "MediaTypes": [],
         "StatusCode": 200
       }
     ]
