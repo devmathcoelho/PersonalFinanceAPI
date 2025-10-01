@@ -9,7 +9,7 @@ public static class UserEndpoints
 {
     public static RouteGroupBuilder MapUserEndpoints(this IEndpointRouteBuilder routes)
     {
-        var group = routes.MapGroup("/user");
+        var group = routes.MapGroup("/users");
 
         group.MapGet("/", async (AppDbContext db) =>
         {
@@ -28,10 +28,12 @@ public static class UserEndpoints
                     Value = e.Value,
                     Category = e.Category
                 }).ToList(),
-                Revenues = u.Revenues.Select(i => new RevenueDto
+                Bills = u.Bills.Select(b => new BillDto
                 {
-                    Name = i.Name,
-                    Value = i.Value,
+                    Name = b.Name,
+                    Value = b.Value,
+                    DueDate = b.DueDate,
+                    IsPaid = b.IsPaid
                 }).ToList()
             });
 
@@ -47,7 +49,6 @@ public static class UserEndpoints
             var user = await db.Users
             .Include(u => u.Categories)
             .Include(u => u.Expenses)
-            .Include(u => u.Revenues)
             .FirstOrDefaultAsync(u => u.Name == name);
 
             if (user is null) return Results.NotFound();
@@ -56,22 +57,27 @@ public static class UserEndpoints
             {
                 Id = user.Id,
                 Name = user.Name,
-                Categories = user.Categories.Select(c => new CategoryDto
-                {
-                    Name = c.Name
-                }).ToList(),
+                TotalRevenue = user.TotalRevenue,
+                TotalExpense = user.TotalExpense,
+                //Categories = user.Categories.Select(c => new CategoryDto
+                //{
+                //    Name = c.Name
+                //}).ToList(),
                 Expenses = user.Expenses.Select(e => new ExpenseDto
                 {
                     Id = e.Id,
                     Name = e.Name,
                     Value = e.Value,
-                    Category = e.Category
+                    Category = e.Category,
+                    Date = e.Date
                 }).ToList(),
-                Revenues = user.Revenues.Select(i => new RevenueDto
+                Bills = user.Bills.Select(b => new BillDto
                 {
-                    Id = i.Id,
-                    Name = i.Name,
-                    Value = i.Value,
+                    Id = b.Id,
+                    Name = b.Name,
+                    Value = b.Value,
+                    DueDate = b.DueDate,
+                    IsPaid = b.IsPaid
                 }).ToList()
             };
 
@@ -85,14 +91,22 @@ public static class UserEndpoints
             // If a user with the same name already exists, return BadRequest
             if (userExists is not null) return Results.BadRequest();
 
-            if ((user.CreatedAt is null) || (user.CreatedAt == ""))
-            {
-                user.CreatedAt = DateTime.Now.ToString();
-            }
-
             db.Users.Add(user);
             await db.SaveChangesAsync();
             return Results.Created($"/users/{user.Id}", user);
+        });
+
+        group.MapDelete("/{name}", async (AppDbContext db, string name) =>
+        {
+            // Gets the user with the specified name
+            var user = await db.Users
+                .FirstOrDefaultAsync(u => u.Name == name);
+
+            if (user is null) return Results.NotFound();
+
+            db.Users.Remove(user);
+            await db.SaveChangesAsync();
+            return Results.Ok();
         });
 
         return group;

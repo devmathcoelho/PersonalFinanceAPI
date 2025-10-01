@@ -4,8 +4,9 @@
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public float Amount { get; set; }
-        public string ExpireDate { get; set; } = string.Empty;
+        public float Value { get; set; }
+        public string DueDate { get; set; } = string.Empty;
+        public bool IsPaid { get; set; } = false;
         public string CreatedAt { get; set; } = DateTime.UtcNow.ToString("dd-MM-yyyy");
 
         public int UserId { get; set; }

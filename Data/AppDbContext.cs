@@ -9,7 +9,6 @@ namespace PersonalFinanceAPI.Data
 
         public DbSet<User> Users => Set<User>();
         public DbSet<Expense> Expense => Set<Expense>();
-        public DbSet<Revenue> Revenue => Set<Revenue>();
         public DbSet<Category> Categories => Set<Category>();
     }
 }
