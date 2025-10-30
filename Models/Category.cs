@@ -5,7 +5,7 @@
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public int Value { get; set; }
-
+        public int Month { get; set; }
         public int UserId { get; set; }
 
         [System.Text.Json.Serialization.JsonIgnore]

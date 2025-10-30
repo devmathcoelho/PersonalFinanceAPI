@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PersonalFinanceAPI.Data;
-using PersonalFinanceAPI.Dtos;
 using PersonalFinanceAPI.Models;
 
 namespace PersonalFinanceAPI.Endpoints
@@ -19,14 +18,6 @@ namespace PersonalFinanceAPI.Endpoints
                 // If a user with this name does not exist, return NotFound
                 if (User is null) return Results.NotFound();
 
-                var Expense = new Expense
-                {
-                    Name = expense.Name,
-                    Value = expense.Value,
-                    Category = expense.Category,
-                    UserId = expense.UserId
-                };
-
                 if (expense.Category == "Income")
                 {
                     User.TotalRevenue += expense.Value;
@@ -35,32 +26,9 @@ namespace PersonalFinanceAPI.Endpoints
                     User.TotalExpense += expense.Value;
                 }
 
-                db.Expense.Add(Expense);
+                db.Expense.Add(expense);
                 await db.SaveChangesAsync();
                 return Results.Ok();
-            });
-
-            group.MapGet("/{Name}", async (AppDbContext db, string Name) =>
-            {
-                var user = await db.Expense
-                    .Where(e => e.Name == Name)
-                    .ToListAsync();
-
-                if (user is null) return Results.NotFound();
-
-                var dto = user.Select(u => new UserDto
-                {
-                    Id = u.Id,
-                    Name = u.Name,
-                    Expenses = u.User.Expenses.Select(e => new ExpenseDto
-                    {
-                        Name = e.Name,
-                        Value = e.Value,
-                        Category = e.Category
-                    }).ToList(),
-                });
-
-                return Results.Ok(dto);
             });
 
             group.MapDelete("/{id}", async (AppDbContext db, int id) =>

@@ -59,17 +59,21 @@ public static class UserEndpoints
                 Name = user.Name,
                 TotalRevenue = user.TotalRevenue,
                 TotalExpense = user.TotalExpense,
-                //Categories = user.Categories.Select(c => new CategoryDto
-                //{
-                //    Name = c.Name
-                //}).ToList(),
+                Categories = user.Categories.Select(c => new CategoryDto
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    Value = c.Value,
+                    Month = c.Month
+                }).ToList(),
                 Expenses = user.Expenses.Select(e => new ExpenseDto
                 {
                     Id = e.Id,
                     Name = e.Name,
                     Value = e.Value,
                     Category = e.Category,
-                    Date = e.Date
+                    Date = e.Date,
+                    UserId = e.UserId
                 }).ToList(),
                 Bills = user.Bills.Select(b => new BillDto
                 {
