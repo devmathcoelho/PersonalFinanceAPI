@@ -34,22 +34,61 @@ namespace PersonalFinanceAPI.Endpoints
                 // If a user with this name does not exist, return NotFound
                 if (User is null) return Results.NotFound();
 
+                var _Category = await db.Categories
+                    .FirstOrDefaultAsync(c => c.Month == category.Month);
+
+                if (_Category is not null) return Results.Conflict();
+
                 db.Categories.Add(category);
                 await db.SaveChangesAsync();
                 return Results.Ok();
             });
 
-            group.MapDelete("/{category.Category}/{category.UserId}", async (AppDbContext db, [FromBody] Expense category) =>
+            group.MapPut("/{user}/{month}/{value}/remove", async (AppDbContext db, int month, int value, string user) =>
             {
-                var user = await db.Users
-                    .FirstOrDefaultAsync(u => u.Id == category.UserId);
+                var User = await db.Users
+                    .FirstOrDefaultAsync(u => u.Name == user);
 
-                var _category = await db.Categories
-                    .FirstOrDefaultAsync(c => c.Name == category.Category);
+                var _Category = await db.Categories
+                    .FirstOrDefaultAsync(c => c.Month == month);
 
-                if(user is null || _category is null) return Results.NotFound();
+                if (User is null || _Category is null) return Results.NotFound();
 
-                db.Categories.Remove(_category);
+                _Category.Value -= value;
+
+                await db.SaveChangesAsync();
+                return Results.Ok();
+            });
+
+            group.MapPut("/{user}/{month}/{value}/add", async (AppDbContext db, int month, int value, string user) =>
+            {
+                var User = await db.Users
+                    .FirstOrDefaultAsync(u => u.Name == user);
+
+                var _Category = await db.Categories
+                    .FirstOrDefaultAsync(c => c.Month == month);
+
+                if (User is null || _Category is null) return Results.NotFound();
+
+                _Category.Value += value;
+
+                await db.SaveChangesAsync();
+                return Results.Ok();
+            });
+
+            group.MapDelete("/{UserName}/{CategoryName}", async (AppDbContext db, string UserName, string CategoryName) =>
+            {
+                var User = await db.Users
+                    .FirstOrDefaultAsync(u => u.Name == UserName);
+
+                if (User is null) return Results.NotFound();
+
+                var Category = await db.Categories
+                    .FirstOrDefaultAsync(c => c.Name == CategoryName && c.UserId == User.Id);
+
+                if (Category is null) return Results.NotFound();
+
+                db.Categories.Remove(Category);
                 await db.SaveChangesAsync();
                 return Results.Ok();
             });

@@ -23,15 +23,57 @@
   },
   {
     "ContainingType": "PersonalFinanceAPI.Endpoints.CategoryEndpoints\u002B\u003C\u003Ec",
-    "Method": "\u003CMapCategoryEndpoints\u003Eb__0_2",
-    "RelativePath": "category/{category.Category}/{category.UserId}",
-    "HttpMethod": "DELETE",
+    "Method": "\u003CMapCategoryEndpoints\u003Eb__0_3",
+    "RelativePath": "category/{user}/{month}/{value}/add",
+    "HttpMethod": "PUT",
     "IsController": false,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "category",
-        "Type": "PersonalFinanceAPI.Models.Expense",
+        "Name": "month",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "value",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "user",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PersonalFinanceAPI.Endpoints.CategoryEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapCategoryEndpoints\u003Eb__0_2",
+    "RelativePath": "category/{user}/{month}/{value}/remove",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "month",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "value",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "user",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -53,6 +95,33 @@
     "Parameters": [
       {
         "Name": "userName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PersonalFinanceAPI.Endpoints.CategoryEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapCategoryEndpoints\u003Eb__0_4",
+    "RelativePath": "category/{UserName}/{CategoryName}",
+    "HttpMethod": "DELETE",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "CategoryName",
         "Type": "System.String",
         "IsRequired": true
       }
