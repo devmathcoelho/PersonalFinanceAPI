@@ -20,10 +20,15 @@ namespace PersonalFinanceAPI.Endpoints
 
                 if (expense.Category == "Income")
                 {
-                    User.TotalRevenue += expense.Value;
+                    User.TotalRevenue += (float)expense.Value;
                 } else
                 {
-                    User.TotalExpense += expense.Value;
+                    User.TotalExpense += (float)expense.Value;
+                }
+
+                if(expense.Date == "" || expense.Date == null)
+                {
+                    expense.Date = DateTime.UtcNow.ToString("dd-MM-yyyy");
                 }
 
                 db.Expense.Add(expense);
@@ -42,11 +47,11 @@ namespace PersonalFinanceAPI.Endpoints
 
                 if (expense.Category == "Income")
                 {
-                    expense.User.TotalRevenue -= expense.Value;
+                    expense.User.TotalRevenue -= (float)expense.Value;
                 }
                 else
                 {
-                    expense.User.TotalExpense -= expense.Value;
+                    expense.User.TotalExpense -= (float)expense.Value;
                 }
 
                 db.Expense.Remove(expense);

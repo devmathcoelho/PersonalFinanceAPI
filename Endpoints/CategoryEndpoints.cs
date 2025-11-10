@@ -35,7 +35,7 @@ namespace PersonalFinanceAPI.Endpoints
                 if (User is null) return Results.NotFound();
 
                 var _Category = await db.Categories
-                    .FirstOrDefaultAsync(c => c.Month == category.Month);
+                    .FirstOrDefaultAsync(c => c.Name == category.Name && c.Month == category.Month);
 
                 if (_Category is not null) return Results.Conflict();
 

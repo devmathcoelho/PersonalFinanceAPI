@@ -6,6 +6,7 @@ namespace PersonalFinanceAPI.Dtos
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
+        public string UserState { get; set; } = string.Empty;
         public List<CategoryDto> Categories { get; set; } = new();
         public List<ExpenseDto> Expenses { get; set; } = new();
         public List<BillDto> Bills { get; set; } = new();

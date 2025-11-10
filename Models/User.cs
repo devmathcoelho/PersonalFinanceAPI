@@ -4,6 +4,7 @@
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
+        public string UserState { get; set; } = string.Empty;
         public List<Category> Categories { get; set; } = new();
         public List<Expense> Expenses { get; set; } = new();
         public List<Bill> Bills { get; set; } = new();

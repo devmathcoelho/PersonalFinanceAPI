@@ -57,6 +57,7 @@ public static class UserEndpoints
             {
                 Id = user.Id,
                 Name = user.Name,
+                UserState = user.UserState,
                 TotalRevenue = user.TotalRevenue,
                 TotalExpense = user.TotalExpense,
                 Categories = user.Categories.Select(c => new CategoryDto

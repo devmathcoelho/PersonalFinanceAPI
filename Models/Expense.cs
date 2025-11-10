@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public float Value { get; set; }
+        public decimal Value { get; set; }
         public string Category { get; set; }
         public string Date { get; set; } = DateTime.UtcNow.ToString("dd-MM-yyyy");
 
